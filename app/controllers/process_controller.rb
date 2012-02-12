@@ -4,11 +4,12 @@ class ProcessController < ApplicationController
   require 'net/https'
   require 'uri'
 
-#grab the POST data and assign to instance vars - use URI.parse to split url into host and path.
+  #grab the POST data and assign to instance vars - use URI.parse to split url into host and path.
   @userPost = params[:post]
   @userUrl = URI.parse(params[:url])
   @userTo = params[:timeout]
 
+  #build HTTPS Post object and params
   http = Net::HTTP.new(@userUrl.host, 443)
   http.use_ssl = true
   http.read_timeout = @userTo.to_i
